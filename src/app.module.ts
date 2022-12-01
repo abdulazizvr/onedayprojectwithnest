@@ -11,6 +11,7 @@ import { OrderModule } from './order/order.module';
 import { Comment } from './comment/comment.model';
 import { Order } from './order/order.model';
 import { Equipment } from './equipment/equipment.model';
+import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -34,6 +35,7 @@ import { Equipment } from './equipment/equipment.model';
     CommentModule,
     EquipmentModule,
     OrderModule,
+    AuthModule,
   ]
 })
 export class AppModule {}
