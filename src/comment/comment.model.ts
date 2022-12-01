@@ -3,6 +3,8 @@ import {Table,Model,Column,BelongsToMany,HasMany,DataType,ForeignKey,BelongsTo} 
 import { Equipment } from 'src/equipment/equipment.model';
 import { User } from 'src/users/users.model';
 
+
+@Table({tableName:"comments"})
 export class Comment extends Model<Comment> {
     @ApiProperty({example:'1',description:'unikal id'})
     @Column({
@@ -45,7 +47,5 @@ export class Comment extends Model<Comment> {
     @BelongsTo(()=>Equipment)
     equipment:Equipment;
 
-    @BelongsToMany(()=>User,() =>User)
-    comments:User[]
 
 }

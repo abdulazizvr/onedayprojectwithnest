@@ -3,10 +3,11 @@ import {ApiProperty} from '@nestjs/swagger'
 import { User } from "src/users/users.model";
 import { Equipment } from "src/equipment/equipment.model";
 
+@Table({tableName:"orders"})
 export class Order extends Model<Order> {
     @ApiProperty({example:'1',description:'Unikal id'})
     @Column({
-        type:DataType.STRING,
+        type:DataType.INTEGER,
         unique:true,
         autoIncrement:true,
         primaryKey:true
@@ -29,7 +30,7 @@ export class Order extends Model<Order> {
 
     @ApiProperty({example:'8',description:'orderning toliq total_price'})
     @Column({
-        type:DataType.NUMBER,
+        type:DataType.INTEGER,
         allowNull:false
     })
     total_price:number;

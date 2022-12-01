@@ -8,6 +8,9 @@ import {resolve} from 'path'
 import { CommentModule } from './comment/comment.module';
 import { EquipmentModule } from './equipment/equipment.module';
 import { OrderModule } from './order/order.module';
+import { Comment } from './comment/comment.model';
+import { Order } from './order/order.model';
+import { Equipment } from './equipment/equipment.model';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -23,7 +26,7 @@ import { OrderModule } from './order/order.module';
       username:process.env.POSTGRES_USER,
       password:process.env.POSTGRES_PASSWORD,
       database:process.env.POSTGRES_DB ,
-      models:[User],
+      models:[User,Comment,Order,Equipment],
       autoLoadModels:true,
       logging:false
     }),

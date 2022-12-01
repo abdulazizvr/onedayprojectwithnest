@@ -2,8 +2,10 @@ import {ApiProperty} from '@nestjs/swagger'
 import {Table,Model,HasMany,Column,DataType,BelongsTo, ForeignKey, BelongsToMany} from 'sequelize-typescript'
 import { User } from 'src/users/users.model';
 import {Comment} from 'src/comment/comment.model'
-export class Equipment extends Model<Equipment> {
 
+@Table({tableName:"equipments"})
+
+export class Equipment extends Model<Equipment> {
     @ApiProperty({example:'1',description:'unikal id'})
     @Column({
         type:DataType.INTEGER,
