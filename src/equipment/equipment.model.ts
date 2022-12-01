@@ -29,9 +29,9 @@ export class Equipment extends Model<Equipment> {
     })
     price:number;
 
-    @ApiProperty({example:'12.5',description:'equipment price'})
+    @ApiProperty({example:'image/default.jpg',description:'equipment image'})
     @Column({
-        type:DataType.INTEGER,
+        type:DataType.STRING,
         allowNull:false
     })
     image:string;
@@ -66,4 +66,5 @@ export class Equipment extends Model<Equipment> {
 
     @HasMany(()=>Comment)
     comments:Comment[]
+
 }

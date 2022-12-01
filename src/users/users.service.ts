@@ -3,6 +3,8 @@ import { InjectModel } from '@nestjs/sequelize';
 import { User } from './users.model';
 import { createUserDto } from './dto/create-user.dto';
 import { updateUserdto } from './dto/update-user.dto';
+import * as bcrypt from 'bcryptjs'
+
 @Injectable()
 export class UsersService {
   constructor(@InjectModel(User) private userRepository: typeof User) {}
@@ -42,22 +44,16 @@ export class UsersService {
 
   async update(id: number, updateuserdto: updateUserdto) {
     const check = await this.userRepository.findByPk(id);
-    console.log(check.name)
     if (!check) {
       throw new HttpException('Id is incorrect', HttpStatus.NOT_FOUND);
     }
-    // await this.userRepository.update(
-    //   {
-    //     name: updateuserdto.name || check.name,
-    //     email: updateuserdto.email || check.email,
-    //     password: updateuserdto.password || check.password,
-    //     phone_number: updateuserdto.phone_number || check.phone_number,
-    //     location: updateuserdto.location || check.location,
-    //   },
-    //   { where: { id: id } },
-    // );
+    let HashedPassword:string;
+    if(updateuserdto.password !== undefined){
+      HashedPassword = await bcrypt.hash(updateuserdto.password,7)
+    }
     await this.userRepository.update({
-      ...updateuserdto 
+      ...updateuserdto,
+      password:HashedPassword 
     },{where:{
       id:id
     }})

@@ -1,5 +1,6 @@
 import {ApiProperty} from '@nestjs/swagger'
-import {Table,Model,Column,BelongsToMany,HasMany,DataType} from 'sequelize-typescript'
+import {Table,Model,Column,BelongsToMany,HasMany,DataType, HasOne} from 'sequelize-typescript'
+import { Comment } from 'src/comment/comment.model';
 
 interface UserCreationAttrs {
     email:string;
@@ -72,4 +73,7 @@ export class User extends Model<User,UserCreationAttrs> {
         defaultValue:false
     })
     is_active:true;
+
+    @HasOne(()=>Comment)
+    comments:Comment
 }

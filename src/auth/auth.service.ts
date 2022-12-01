@@ -40,7 +40,13 @@ export class AuthService {
             ...userDto,
             password:HashedPassword
         })
-        return this.generateToken(user)
+        const token = await this.generateToken(user)
+        console.log(token)
+        return {
+            status:200,
+            message:"Succes",
+            token:token
+        }
     }
     private async generateToken(user:User){
         const payload = {email:user.email,id:user.id,is_active:user.is_active,is_admin:user.is_admin}

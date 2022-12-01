@@ -12,6 +12,8 @@ import { Comment } from './comment/comment.model';
 import { Order } from './order/order.model';
 import { Equipment } from './equipment/equipment.model';
 import { AuthModule } from './auth/auth.module';
+import { FilesService } from './files/files.service';
+import { FilesModule } from './files/files.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -36,7 +38,9 @@ import { AuthModule } from './auth/auth.module';
     EquipmentModule,
     OrderModule,
     AuthModule,
-  ]
+    FilesModule,
+  ],
+  providers: [FilesService]
 })
 export class AppModule {}
 
